@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    freopen("test_input.txt", "r", stdin);
+    freopen("input.txt", "r", stdin);
     int k;
     vector<int> A = {0};
     while(cin >> k) A.push_back(k);

@@ -55,7 +55,6 @@ int main() {
                 break;
             }
         }
-
     }
     print(re);
 

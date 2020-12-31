@@ -68,7 +68,6 @@ bool matchW(Board b, Board bb) {
     for (int k = 0; k < MAXN; k++) 
         bbE.push_back(bb.b[k][MAXN - 1]);
     return bW == bbE;
-
 }
 
 // return non 'X' if and only if boards match any side

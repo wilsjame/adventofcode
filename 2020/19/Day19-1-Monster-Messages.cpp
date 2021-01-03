@@ -3,50 +3,56 @@
 #include <sstream>
 #include <unordered_map>
 #include <vector>
+#include <set>
 using namespace std;
 
 #define ALETTER 1000
 #define BLETTER 2000
 #define print(x) cerr << #x << " is " << x << endl;
 
-unordered_map <int, vector<vector<int>>> M;
+// CYK algorithm implementation 
+// return true if w can be derived from the CNF grammar G 
+bool solve(string w, unordered_map<int, vector<vector<int>>> G) {
+    int T, N = w.length();
+    set<int> dp[100][100] = {}; // only using dp[N+1][N+1]
 
-// return longest valid sequence of characters in message
-int solve(string msg, int rn) {
-    //cerr << " " << msg << " " << rn << endl;
-    vector<vector<int>> terminals = M[rn];
-
-    // base case
-    if (terminals[0][0] == ALETTER || terminals[0][0] == BLETTER) {
-        char ts;
-        terminals[0][0] == ALETTER ? ts = 'a' : ts = 'b';
-        if (msg[0] == ts) return 1; 
-        else return -1;
-    }
-
-    for (auto opt : terminals) {
-        int acc = 0;
-        for (auto r : opt) {
-            int ret = solve(msg.substr(acc), r);
-            if (ret == -1) {
-                acc = -1;
-                break;
+    for (int i = 1; i <= N; i++) {
+        w[i - 1] == 'a' ? T = ALETTER : T = BLETTER;
+        // unit production R -> T
+        for (auto R : G) {
+            int rn = R.first;
+            for (vector<int> rv : R.second) {
+                if (rv[0] == T) 
+                    dp[1][i].insert(rn);
             }
-            acc += ret;
         }
-        if (acc != -1) {
-            // try second option in terminals if it's there
-            return acc; 
+    }
+    for (int l = 2; l <= N; l++) {                  // length of span 
+        for (int s = 1; s <= N - l + 1; s++) {      // start of span
+            for (int p = 1; p <= l - 1; p++) {      // partition of span
+                // production R -> RR, RR | RR
+                for (auto R : G) {
+                    int rn = R.first;
+                    for (vector<int> rv : R.second) {
+                        if (rv[0] == T) continue;
+                        int r1 = rv[0], r2 = rv[1];
+                        if (dp[p][s].count(r1) && dp[l - p][s + p].count(r2))
+                            dp[l][s].insert(rn);
+                    }
+                }
+            }
         }
     }
 
-    return -1;
+    return dp[N][1].size() > 0;
 }
 
 int main() {
     freopen("input.txt", "r", stdin);
     string S; 
     vector<string> A;
+    unordered_map<int, vector<vector<int>>> M;
+
     while (getline(cin, S)) {
         // So this is how it's going to be?
         // Reading and formatting input like this!
@@ -76,10 +82,16 @@ int main() {
         }
     }
     while (getline(cin, S)) A.push_back(S);
+
+    // hardcode into CNF
+    M[8].clear();
+    M[96].clear();
+    M[8] = M[42];
+    M[96] = {{ALETTER}, {BLETTER}};
         
     int ans = 0;
     for (string msg : A) 
-        ans += solve(msg, 0) == msg.length();
+        ans += solve(msg, M);
     print(ans);
 
     return 0;

@@ -44,7 +44,8 @@ bool solve(string w, unordered_map<int, vector<vector<int>>> G) {
         }
     }
 
-    return dp[N][1].size() > 0;
+    // rule 0 is start
+    return dp[N][1].count(0);
 }
 
 int main() {
@@ -83,9 +84,7 @@ int main() {
     }
     while (getline(cin, S)) A.push_back(S);
 
-    // hardcode into CNF
-    M[8].clear();
-    M[96].clear();
+    // convert CFG to CNF
     M[8] = M[42];
     M[96] = {{ALETTER}, {BLETTER}};
         

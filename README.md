@@ -31,5 +31,5 @@ the Cocke-Younger-Kasami (CYK) algorithm to validate messages.
 Puzzle within a puzzle! Brute force tile rearranging to find sea
 monsters.
 
-### Day 25:
+### Day 25: Combo Breaker
 Diffie-Hellman-Merkle key exchange puzzle.

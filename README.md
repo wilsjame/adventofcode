@@ -1,18 +1,18 @@
 # 2020
-Thank you [Eric Wastl](http://was.tl) for [Advent of Code](https://adventofcode.com/events).
-Head over to the [website](https://adventofcode.com/about) to find out more!
+Thank you [Eric Wastl](http://was.tl) for hosting [Advent of Code](https://adventofcode.com/events).
+Head over to its [about page](https://adventofcode.com/about) to find out more!
 
 ## Notable Days 
 
-These are some of the days that led to those *just one more page* search
-crawls. Either from curiousity to find out more or plain old problem 
-stumped. Usually a mix of both but the latter absolutely being Day 19!
+These are some of the days that led to some interesting search
+crawls. Either from curiosity to find out more or being stumped on
+what to do. Usually a mix of both, but the latter absolutely being Day 19!
 
 ### Day 8: Handheld Halting
 Write a parser for some assembly like boot code.
 
 ### Day 13: Shuttle Search
-Use the Chinese remainder theorom to find the earliest time a set of
+Use the Chinese remainder theorem to find the earliest time a set of
 buses will depart at specific offsets from each other.
 
 ### Day 14: Docking Data
@@ -30,3 +30,6 @@ the Cocke-Younger-Kasami (CYK) algorithm to validate messages.
 ### Day 20: Jurassic Jigsaw
 Puzzle within a puzzle! Brute force tile rearranging to find sea
 monsters.
+
+### Day 25:
+Diffie-Hellman-Merkle key exchange puzzle.

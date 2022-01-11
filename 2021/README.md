@@ -1,6 +1,6 @@
 Using Python 3.10.1 and mypy. 
 
-mypy typing hints follow the Python 3.9+ style so earlier versions of Python won't work. 
+mypy typing hints follow the Python 3.9+ style so earlier Python versions won't work. 
 
 ```
 # Python 3.8 and earlier

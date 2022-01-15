@@ -9,18 +9,20 @@ with open('input/day12.txt') as f:
         adj[v].append(u)
 
 # Part One (allowed to visit lower case nodes once)
-def dfs(path: list[str], adj: graph, allpaths: list[list[str]]) -> None:
+def dfs(path: list[str], adj: graph, allpaths: list[list[str]]) -> int:
     """brute force all paths from start to end nodes"""
+    cnt: int = 0
     if path[-1] == 'end':
         allpaths.append(path)
-    else:
-        for u in adj[path[-1]]:
-            if u.isupper() or u not in path:
-                dfs(path + [u], adj, allpaths)
+        return 1
+    for u in adj[path[-1]]:
+        if u.isupper() or u not in path:
+            cnt += dfs(path + [u], adj, allpaths)
+    return cnt
 
 path: list[str] = ['start']
 allpaths: list[list[str]] = []
-dfs(path, adj, allpaths)
+print(dfs(path, adj, allpaths))
 print(len(allpaths))
 
 # Part Two (allowed to visit one lowercase node twice)

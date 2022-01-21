@@ -26,12 +26,13 @@ def literal(bits: list[str], ptr: int) -> int:
     a.append(l)
     return ptr
 
-def operator0(bits: list[str], ptr: int) -> int:
+def operator0(bits: list[str], ptr: int, op: str) -> int:
     """next 15 bits are a number representing total bit length of sub-packets contained in this packet"""
     l = int(''.join(bits[ptr:ptr+15]), 2)
     ptr += 15
     bcnt = 0
     a.append('(')
+    a.append(op)
     while bcnt < l:
         k, b = parse(bits, ptr)
         bcnt += b
@@ -39,12 +40,13 @@ def operator0(bits: list[str], ptr: int) -> int:
     a.append(')')
     return ptr
 
-def operator1(bits: list[str], ptr: int) -> int:
+def operator1(bits: list[str], ptr: int, op: str) -> int:
     """next 11 bits are a number representing number of sub-packets contained by this packet"""
     l = int(''.join(bits[ptr:ptr+11]), 2)
     ptr += 11
     pcnt = 0
     a.append('(')
+    a.append(op)
     while pcnt < l:
         k, b = parse(bits, ptr)
         pcnt += k
@@ -54,6 +56,7 @@ def operator1(bits: list[str], ptr: int) -> int:
 
 def parse(bits: list[str], ptr) -> tuple[int, int]:
     """returns tuple containing 1 as in one packet procssed and number of bits processed"""
+    op = ['+', '*', 'mn', 'mx', '_', '>', '<', '=']
     ptr_i = ptr
     v, t = header(bits[ptr:ptr+6]) # version and type header
     global cnt
@@ -65,23 +68,9 @@ def parse(bits: list[str], ptr) -> tuple[int, int]:
         i = bits[ptr]
         ptr += 1
         if i == '0':
-            ptr = operator0(bits, ptr)
+            ptr = operator0(bits, ptr, op[t])
         elif i == '1':
-            ptr = operator1(bits, ptr)
-    if t == 0:
-        a.append('+')
-    elif t == 1:
-        a.append('*')
-    elif t == 2:
-        a.append('mn')
-    elif t == 3:
-        a.append('mx')
-    elif t == 5:
-        a.append('>')
-    elif t == 6:
-        a.append('<')
-    elif t == 7:
-        a.append('=')
+            ptr = operator1(bits, ptr, op[t])
     return 1, ptr - ptr_i
 
 # Part One 

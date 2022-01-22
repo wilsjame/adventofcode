@@ -1,12 +1,36 @@
 import math
+from collections import deque
 from itertools import chain
 s: str
 with open('input/day16.txt') as f:
     s = f.read().strip()
 
-nibs: list[str] = []
-nibs = [bin(int(nib, 16))[2:].zfill(4) for nib in s]
+nibs: list[str] = [bin(int(nib, 16))[2:].zfill(4) for nib in s]
 b = list(chain.from_iterable(nibs)) # bit dump
+
+def eval(op: str) -> None:
+    """evaluates the parenthesized expression contained in a"""
+    v: deque[any] = deque()
+    while True:
+        k = a.pop()
+        if k != '(':
+            v.appendleft(k)
+        else:
+            break
+    if op == '+':
+        a.append(sum(v))
+    elif op == '*':
+        a.append(math.prod(v))
+    elif op == 'mn':
+        a.append(min(v))
+    elif op == 'mx':
+        a.append(max(v))
+    elif op == '>':
+        a.append(v[0] > v[1])
+    elif op == '<':
+        a.append(v[0] < v[1])
+    elif op == '=':
+        a.append(v[0] == v[1])
 
 def header(bits: list[str]) -> tuple[int, int]:
     """return packet version and type ID [1-7] from 6-bit header"""
@@ -32,12 +56,11 @@ def operator0(bits: list[str], ptr: int, op: str) -> int:
     ptr += 15
     bcnt = 0
     a.append('(')
-    a.append(op)
     while bcnt < l:
         k, b = parse(bits, ptr)
         bcnt += b
         ptr += b
-    a.append(')')
+    eval(op) # ')'
     return ptr
 
 def operator1(bits: list[str], ptr: int, op: str) -> int:
@@ -46,12 +69,11 @@ def operator1(bits: list[str], ptr: int, op: str) -> int:
     ptr += 11
     pcnt = 0
     a.append('(')
-    a.append(op)
     while pcnt < l:
         k, b = parse(bits, ptr)
         pcnt += k
         ptr += b
-    a.append(')')
+    eval(op) # ')'
     return ptr
 
 def parse(bits: list[str], ptr) -> tuple[int, int]:
@@ -74,11 +96,11 @@ def parse(bits: list[str], ptr) -> tuple[int, int]:
     return 1, ptr - ptr_i
 
 # Part One 
-cnt:  int    = 0  # version sum
-a: list[int] = [] # literal values and ops expression 
+cnt: int = 0  # version sum
+a: deque[int] = deque() # literal values and ops expression 
 parse(b, 0)
 print(cnt)
 
-#TODO Part Two
-# parse expression 
+# Part Two
+# eval has already parsed expression 
 print(a)

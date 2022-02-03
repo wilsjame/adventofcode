@@ -3,7 +3,6 @@ with open('input/day21.txt') as f:
     pos_2: int = int(f.readline().strip().split(': ')[1])
 
 # Part One
-b: list[int] = [i for i in range(1, 11)]
 die: list = [i for i in range(1, 101)] * 10
 score_1: int = 0
 score_2: int = 0

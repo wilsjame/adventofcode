@@ -1,27 +1,38 @@
-with open('input/day21.txt') as f:
-    pos_1: int = int(f.readline().strip().split(': ')[1])
-    pos_2: int = int(f.readline().strip().split(': ')[1])
+class Dice():
+    def __init__(self):
+        self.cnt: int = 0
+        self.roll_cnt: int = 0
+
+    def roll(self) -> int:
+        self.cnt += 1
+        self.cnt %= 10
+        if self.cnt == 0:
+            self.cnt = 10
+        self.roll_cnt += 1
+        return self.cnt
+
+die = Dice()
+
+class Player():
+    def __init__(self, start):
+        self.pos: int = start
+        self.score: int = 0
+
+    def move(self, spaces: int) -> int:
+        self.pos += spaces
+        self.pos %= 10
+        if self.pos == 0:
+            self.pos = 10
+        return self.pos
+
+players: list[Player] = [Player(8), Player(10)]
 
 # Part One
-die: list = [i for i in range(1, 101)] * 10
-score_1: int = 0
-score_2: int = 0
-i: int = 0
-while score_1 < 1000 and score_2 < 1000:
-    if i % 2 == 0:
-        pos_1 += sum(die[i:i+3])
-        mod = pos_1 % 10
-        if mod == 0:
-            score_1 += 10
-        else:
-            score_1 += mod
-    else:
-        pos_2 += sum(die[i:i+3])
-        mod = pos_2 % 10
-        if mod == 0:
-            score_2 += 10
-        else:
-            score_2 += mod
-    i += 3
-res = sorted([i, score_1, score_2])
-print(res[0] * res[1])
+turn: int = 0
+while True:
+    who: int = turn % 2
+    players[who].score += players[who].move(die.roll() + die.roll() + die.roll())
+    turn += 1
+    if players[who].score > 999: 
+        break
+print(min(players[0].score, players[1].score) * die.roll_cnt)

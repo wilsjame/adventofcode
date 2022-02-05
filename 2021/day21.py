@@ -4,10 +4,8 @@ class Dice():
         self.roll_cnt: int = 0
 
     def roll(self) -> int:
-        self.cnt += 1
-        self.cnt %= 10
-        if self.cnt == 0:
-            self.cnt = 10
+        inc: int = 1
+        self.cnt = (self.cnt + inc - 1 % 10) + 1
         self.roll_cnt += 1
         return self.cnt
 
@@ -19,10 +17,7 @@ class Player():
         self.score: int = 0
 
     def move(self, spaces: int) -> int:
-        self.pos += spaces
-        self.pos %= 10
-        if self.pos == 0:
-            self.pos = 10
+        self.pos = ((self.pos + spaces - 1) % 10) + 1 
         return self.pos
 
 players: list[Player] = [Player(8), Player(10)]

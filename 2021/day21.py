@@ -5,7 +5,7 @@ class Dice():
 
     def roll(self) -> int:
         inc: int = 1
-        self.cnt = (self.cnt + inc - 1 % 10) + 1
+        self.cnt = (self.cnt + inc - 1) % 10 + 1
         self.roll_cnt += 1
         return self.cnt
 
@@ -17,7 +17,7 @@ class Player():
         self.score: int = 0
 
     def move(self, spaces: int) -> int:
-        self.pos = ((self.pos + spaces - 1) % 10) + 1 
+        self.pos = (self.pos + spaces - 1) % 10 + 1 
         return self.pos
 
 players: list[Player] = [Player(8), Player(10)]
@@ -32,8 +32,51 @@ while True:
         break
 print(min(players[0].score, players[1].score) * die.roll_cnt)
 
+"""
+def solve(turn: int=0) -> None:
+    who: int = turn % 2
+    players[who].score += players[who].move(die.roll() + die.roll() + die.roll())
+    if players[0].score > 999 or players[1].score > 999:
+        return
+    solve(turn+1)
+solve()
+print(min(players[0].score, players[1].score) * die.roll_cnt)
+"""
+
 # Part Two
-# TODO clean up as is, recursive brute force with memo
+# brute force with memo 10 spaces * 10 spaces * 21 pts * 21 pts = 44100 max
+Score = int
+Pos   = int
+GameState = tuple[Score, Pos, Score, Pos]
+memo: dict[tuple[GameState], tuple[int, int]] = {}
+
+# player 1 is initially passed to the p1 parameters
+# since the players take turns player 1 is then passed to the
+# p2 parameter to wait for player 2 to play next as p1. 
+def solve(p1_score=0, p1_pos=8, p2_score=0, p2_pos=10) -> tuple[int, int]:
+    if p1_score >= 21:
+        return (1, 0)
+    if p2_score >= 21:
+        return (0, 1)
+
+    state: GameState = (p1_score, p1_pos, p2_score, p2_pos)
+    if state in memo:
+        return memo[state]
+
+    p1_wins = 0
+    p2_wins = 0
+    for d1 in (1, 2, 3):
+        for d2 in (1, 2, 3):
+            for d3 in (1, 2, 3):
+                sumdie = d1 + d2 + d3
+                r2, r1 = solve(p2_score, p2_pos, p1_score+((p1_pos+sumdie-1)%10+1), (p1_pos+sumdie-1)%10+1)
+                p1_wins += r1
+                p2_wins += r2
+    memo[state] = (p1_wins, p2_wins)
+    return memo[state]
+print(max(solve()))
+
+"""
 from collections import defaultdict
 from typing import DefaultDict
 Score    = int
@@ -80,3 +123,4 @@ while cur_universes:
                 nxt_universes[(nupos_1, nuscr_1, nupos_2, nuscr_2)] += cnt
     cur_universes = nxt_universes
 print(p1_wins, p2_wins)
+"""

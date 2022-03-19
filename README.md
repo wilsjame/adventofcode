@@ -1,7 +1,7 @@
 # 2021
 ```
 --- Day 5: Hydrothermal Venture ---
-m = (y - y1) / (x - x2)
+m = (y - y1) / (x - x1)
 y = m(x - x1) + y1
 
 --- Day 6: Lanternfish ---

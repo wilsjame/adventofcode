@@ -1,3 +1,58 @@
+# 2021
+```
+--- Day 5: Hydrothermal Venture ---
+m = (y - y1) / (x - x2)
+y = m(x - x1) + y1
+
+--- Day 6: Lanternfish ---
+contain exponential growth using a hash table
+
+--- Day 8: Seven Segment Search ---
+seven-segment display deduction
+
+--- Day 9: Smoke Basin ---
+flood fill
+
+--- Day 12: Passage Pathing ---
+dfs + store all paths
+
+--- Day 13: Transparent Origami ---
+cool folding problem with ascii art output
+
+--- Day 14: Extended Polymerization ---
+sequel to lanternfish on day 6
+
+--- Day 15: Chiton ---
+shortest paths in a weighted graph 
+graph size is scaled up for part 2
+
+--- Day 16: Packet Decoder ---
+parse nested packets of bits
+
+--- Day 18: Snailfish ---
+so many bugs implementation (addition, explode, split)
+
+--- Day 19: Beacon Scanner ---
+whyy
+
+--- Day 20: Trench Map ---
+image enhancement requiring carefully picked padding
+
+--- Day 21: Dirac Dice ---
+cool two player game simulation
+brute force + memo
+
+--- Day 22: Reactor Reboot ---
+coordinate compression
+
+--- Day 23: Amphipod ---
+magic squares callback, find shortest path from start to finish states
+brute force + memo
+
+--- Day 24: Arithmetic Logic Unit ---
+reversing
+```
+
 # 2020
 Thank you [Eric Wastl](http://was.tl) for hosting [Advent of Code](https://adventofcode.com/events).
 Head over to its [about page](https://adventofcode.com/about) to find out more!

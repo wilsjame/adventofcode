@@ -2,7 +2,7 @@
 
 // intcode's first two parameters change the
 // start values in arr, and these will be brute
-// forced in part 2. intcode expects new copies
+// forced in part 2. intcode expects a new copy
 // of arr every time. 
 int intcode(int a, int b, List<int> arr)
 {

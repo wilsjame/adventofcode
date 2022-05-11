@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <None Update="day01.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

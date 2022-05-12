@@ -25,3 +25,34 @@ for v in myset:
     ans += dfs(v, 0)
 print(ans)
 
+# part 2
+def dfs2(s: str, path: list[str]) -> list[str]:
+    "returns the path from to s to COM"
+    if s == 'COM':
+        return path
+    for u in adj[s]:
+        path.append(u)
+        dfs2(u, path)
+    return path
+
+path1 = (dfs2('YOU', ['YOU']))
+path2 = (dfs2('SAN', ['SAN']))
+
+# where the paths meet
+meet: str = None
+for x in path1: 
+    if path2.count(x) > 0:
+        meet = x
+        break
+
+"""
+print(meet)
+print(path1.index(meet), path1)
+print(path2.index(meet), path2)
+"""
+
+d1 = path1.index(meet)
+d2 = path2.index(meet)
+total = d1 + d2 - 1 # minus 1 because meet is counted twice
+print(total-1)      # minus 1 to count links instead of steps
+

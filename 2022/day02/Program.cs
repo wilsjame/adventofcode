@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
-using Utils = day02.Utils;
+using day02;
 
 // Set up stream reader to read input file
 var assembly = Assembly.GetExecutingAssembly();

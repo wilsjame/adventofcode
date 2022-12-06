@@ -2,7 +2,7 @@ using System.Text;
 
 namespace day05;
 
-public class Utils
+public static class Utils
 {
     public static void Move(List<Stack<char>> stacks, List<int> moves)
     {

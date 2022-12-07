@@ -1,3 +1,9 @@
+# 2022
+```
+--- Day 6: Tuning Trouble ---
+links: significant experience dealing with signal-based systems
+```
+
 # 2021
 ```
 --- Day 5: Hydrothermal Venture ---

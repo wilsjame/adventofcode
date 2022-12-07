@@ -35,7 +35,6 @@ Console.WriteLine(ans1);
 int? ans2 = null;
 for (var i = 0; i + 14 < l.Length; i++)
 {
-    // create hash set for the string of length 4 from i
     var set = new HashSet<char>();
     for (var j = 0; j < 14; j++)
     {

@@ -1,7 +1,10 @@
 # 2022
 ```
 --- Day 6: Tuning Trouble ---
-links: significant experience dealing with signal-based systems
+significant experience dealing with signal-based systems
+
+--- Day 7: No Space Left On Device ---
+filesystem crawl
 ```
 
 # 2021

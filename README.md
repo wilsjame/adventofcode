@@ -5,6 +5,9 @@ significant experience dealing with signal-based systems
 
 --- Day 7: No Space Left On Device ---
 filesystem crawl
+
+--- Day 10: Cathode-Ray Tube ---
+racing the beam
 ```
 
 # 2021

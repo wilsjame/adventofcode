@@ -8,6 +8,12 @@ filesystem crawl
 
 --- Day 10: Cathode-Ray Tube ---
 racing the beam
+
+--- Day 11: Monkey in the Middle ---
+1/a, 1/b, and 1/c have common denominator a*b*c 
+
+--- Day 12: Hill Climbing Algorithm ---
+bfs
 ```
 
 # 2021

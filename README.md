@@ -14,6 +14,9 @@ racing the beam
 
 --- Day 12: Hill Climbing Algorithm ---
 bfs
+
+--- Day 13: Distress Signal ---
+parse variable amount of nested brackets and bubble sort
 ```
 
 # 2021

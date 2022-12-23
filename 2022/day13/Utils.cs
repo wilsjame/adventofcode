@@ -133,4 +133,37 @@ public static class Utils
     {
         return o1 is int && o2 is int;
     }
+
+    // O(n^2) OK because n is small
+    public static void BubbleSort(List<List<object>> list)
+    {
+        var n = list.Count;
+        for (var i = 0; i < n; i++)
+        {
+            for (var j = 0; j < n - 1; j++)
+            {
+                if (CompareList(list[j], list[j + 1]) == -1)
+                {
+                    // swap via tuple deconstruction syntax
+                    // https://stackoverflow.com/a/39190792/7652616
+                    (list[j], list[j + 1]) = (list[j + 1], list[j]);
+                }
+            }
+        }
+    }
+
+    public static int FindIndex(List<List<object>> allLists, List<object> divider)
+    {
+        // find the index of the divider in allLists
+        for (var i = 0; i < allLists.Count; i++)
+        {
+            if (CompareList(allLists[i], divider) == 0)
+            {
+                return i;
+            }
+        }
+
+        // divider not found (should not happen)
+        throw new InvalidOperationException();
+    }
 }

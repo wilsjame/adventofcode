@@ -17,6 +17,9 @@ bfs
 
 --- Day 13: Distress Signal ---
 parse variable amount of nested brackets and bubble sort
+
+--- Day 14: Regolith Reservoir ---
+simulate sand pouring
 ```
 
 # 2021

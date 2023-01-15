@@ -20,6 +20,9 @@ parse variable amount of nested brackets and bubble sort
 
 --- Day 14: Regolith Reservoir ---
 simulate sand pouring
+
+--- Day 15: Beacon Exclusion Zone ---
+taxi cab circles and merging overlapping ranges
 ```
 
 # 2021
